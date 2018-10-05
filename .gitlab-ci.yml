@@ -1,0 +1,10 @@
+stages:
+  - build
+  - test
+
+build:
+  script:
+    - ant BuildOnly
+test:
+  script:
+    - cd dist/ && unzip CheckJDB*.zip && java -jar CheckJDBC.jar -v
