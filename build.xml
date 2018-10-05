@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CheckJDBC" default="all" basedir=".">
+
+	<buildnumber file="version/build.num"/>
+
+	<property name="project.version" value="3.2"/>
+	<property name="project.author.name"   value="Gilles Dejeneffe"/>
+	<property name="project.author.mail"   value="Gilles.dejeneffe@soprabanking.com"/>
+	<property name="project.author.soc"   value="Sopra Banking Software"/>
+
+	<property name="build.sysclasspath" value="last"/>
+	<property name="src"   location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
+	<property name="jar"   location="jar"/>
+    <property name="lib"   location="lib"/>
+	<property name="bin"   location="bin"/>
+	<property name="scripts"   location="scripts"/>
+	<property name="project.version.full" value="${project.version}-build-${build.number}"/>
+
+  <path id="classpath">
+      <fileset dir="${lib}" includes="*.jar"/>
+  </path>
+
+	<target name="Init">
+		<echo>Initialize Directories Structure</echo>
+    	<!-- Create the time stamp -->
+    <tstamp/>
+    	<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${jar}"/>
+		<delete includeEmptyDirs="true">
+			<fileset dir="${build}" includes="**/*"/>
+			<fileset dir="${jar}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<target name="Compile">
+		<echo>Compile Version : ${project.version.full} ${TODAY} </echo>
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" debug="true" classpathref="classpath" />
+ 	</target>
+
+	<target name="print-version">
+            <echo>Build will be done with</echo>
+        <echo>Java/JVM version: ${ant.java.version}</echo>
+        <echo>Java/JVM detail version: ${java.version}</echo>
+        <echo>Apache Ant version: ${ant.version}</echo>
+	</target>
+
+  <target name="Build" description="Build of the application" depends="Clean, Compile">
+		<echo>Building App</echo>
+      	<copy todir="${jar}/lib"><fileset dir="${lib}"/></copy>
+      	<copy todir="${jar}"><fileset dir="${scripts}" includes="**/*"/></copy>
+      	<copy todir="${build}/com/sopra/JDBCChecker/img"><fileset dir="${src}/com/sopra/JDBCChecker/img"/></copy>
+      	<copy todir="${build}/com/sopra/JDBCChecker/messages"><fileset dir="${src}/com/sopra/JDBCChecker/messages"/></copy>
+		<tstamp>
+		  <format property="TODAY" pattern="dd-MM-yyyy HH:mm:ss" />
+		</tstamp>
+  	    <manifest file="manifest/MANIFEST.MF">
+  	        <attribute name="Built-By" value="${project.author.name}"/>
+            <section name="com/sopra/JDBCChecker">
+                <attribute name="Title" value="${ant.project.name}"/>
+                <attribute name="Mail" value="${project.author.mail}"/>
+		    </section>
+  		    <attribute name="Manifest-Version" value="1.0"/>
+  		    <attribute name="Main-Class" value="com.sopra.JDBCChecker.${ant.project.name}"/>
+  		    <attribute name="Specification-Title" value="JDBC Checking Tool"/>
+  		    <attribute name="Specification-Version" value="${project.version}"/>
+  		    <attribute name="Specification-Vendor" value="${project.author.name},${project.author.soc}"/>
+  		    <attribute name="Implementation-Title" value="com.sopra.JDBCChecker"/>
+  		    <attribute name="Implementation-Version" value="build ${build.number}"/>
+  		    <attribute name="Implementation-Vendor" value="${project.author.name},${project.author.soc}"/>
+  		    <attribute name="Built-Date" value="${TODAY}"/>
+  	  	    <!-- Jar Class Path -->
+  		    <attribute name="Class-Path" value="lib/ojdbc-6.0.12c.jar lib/commons-cli-1.2.jar"/>
+  	    </manifest>
+		<echo>Building Jar</echo>
+        <jar manifest="manifest/MANIFEST.MF" jarfile="${jar}/${ant.project.name}.jar" basedir="${build}"/>
+  </target>
+
+	<target name="Clean">
+		<echo>After build cleaning.</echo>
+			<delete includeEmptyDirs="true">
+		  <fileset dir="${build}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<target name="Distr" description="Building Distributable Archive">
+		<echo>Creatin distributalbe archive.</echo>
+		<zip destfile="${dist}/${ant.project.name}-${project.version}.zip" basedir="${jar}"/>
+	</target>
+
+	<target name="all" description="Main ant job" depends="print-version, Init, Build, Distr, Clean" />
+	<target name="BuildOnly" description="Build Only job" depends="Init, Build" />
+
+</project>
