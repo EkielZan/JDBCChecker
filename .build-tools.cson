@@ -1,0 +1,44 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "D:\\git_repo\\innersource\\JDBCChecker"
+          source: "D:\\git_repo\\innersource\\JDBCChecker\\.build-tools.cson"
+          name: "Full Ant Run"
+          command: "ant -f build.xml"
+          wd: "."
+          env: {}
+          modifier:
+            save_all: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: [
+              {
+                name: "profile"
+                config:
+                  profile: "java"
+              }
+            ]
+          stderr:
+            pipeline: [
+              {
+                name: "all"
+              }
+            ]
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: true
+              stdin: false
+          version: 2
+        }
+      ]
+  }
+]
+
