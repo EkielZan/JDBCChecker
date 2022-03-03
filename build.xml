@@ -5,8 +5,8 @@
 
 	<property name="project.version" value="3.2"/>
 	<property name="project.author.name"   value="Gilles Dejeneffe"/>
-	<property name="project.author.mail"   value="Gilles.dejeneffe@soprabanking.com"/>
-	<property name="project.author.soc"   value="Sopra Banking Software"/>
+	<property name="project.author.mail"   value="Gilles.dejeneffe@outlook.be"/>
+	<property name="project.author.soc"   value="N/A"/>
 
 	<property name="build.sysclasspath" value="last"/>
 	<property name="src"   location="src"/>
