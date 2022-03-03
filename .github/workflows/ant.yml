@@ -25,3 +25,10 @@ jobs:
       run: ant -noinput -buildfile build.xml
     - name: Version check
       run: cd dist/ && unzip CheckJDB*.zip && java -jar CheckJDBC.jar -v
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.MY_TOKEN }}"
+        prerelease: false
+        files: |
+          LICENSE.txt
+          dist/*.zip
