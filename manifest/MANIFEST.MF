@@ -2,17 +2,17 @@ Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.9.13
 Created-By: 1.8.0_161-b12 (Oracle Corporation)
 Built-By: Gilles Dejeneffe
-Main-Class: com.sopra.JDBCChecker.CheckJDBC
+Main-Class: com.ekielzan.JDBCChecker.CheckJDBC
 Specification-Title: JDBC Checking Tool
 Specification-Version: 3.2
-Specification-Vendor: Gilles Dejeneffe,Sopra Banking Software
-Implementation-Title: com.sopra.JDBCChecker
+Specification-Vendor: Gilles Dejeneffe,ekielzan Banking Software
+Implementation-Title: com.ekielzan.JDBCChecker
 Implementation-Version: build 48
-Implementation-Vendor: Gilles Dejeneffe,Sopra Banking Software
+Implementation-Vendor: Gilles Dejeneffe,ekielzan Banking Software
 Built-Date: September 10 2018
 Class-Path: lib/ojdbc-6.0.12c.jar lib/commons-cli-1.2.jar
 
-Name: com/sopra/JDBCChecker
+Name: com/ekielzan/JDBCChecker
 Title: CheckJDBC
-Mail: Gilles.dejeneffe@soprabanking.com
+Mail: Gilles.dejeneffe@ekielzanbanking.com
 

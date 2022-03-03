@@ -53,23 +53,23 @@
 		<echo>Building App</echo>
       	<copy todir="${jar}/lib"><fileset dir="${lib}"/></copy>
       	<copy todir="${jar}"><fileset dir="${scripts}" includes="**/*"/></copy>
-      	<copy todir="${build}/com/sopra/JDBCChecker/img"><fileset dir="${src}/com/sopra/JDBCChecker/img"/></copy>
-      	<copy todir="${build}/com/sopra/JDBCChecker/messages"><fileset dir="${src}/com/sopra/JDBCChecker/messages"/></copy>
+      	<copy todir="${build}/com/ekielzan/JDBCChecker/img"><fileset dir="${src}/com/ekielzan/JDBCChecker/img"/></copy>
+      	<copy todir="${build}/com/ekielzan/JDBCChecker/messages"><fileset dir="${src}/com/ekielzan/JDBCChecker/messages"/></copy>
 		<tstamp>
 		  <format property="TODAY" pattern="dd-MM-yyyy HH:mm:ss" />
 		</tstamp>
   	    <manifest file="manifest/MANIFEST.MF">
   	        <attribute name="Built-By" value="${project.author.name}"/>
-            <section name="com/sopra/JDBCChecker">
+            <section name="com/ekielzan/JDBCChecker">
                 <attribute name="Title" value="${ant.project.name}"/>
                 <attribute name="Mail" value="${project.author.mail}"/>
 		    </section>
   		    <attribute name="Manifest-Version" value="1.0"/>
-  		    <attribute name="Main-Class" value="com.sopra.JDBCChecker.${ant.project.name}"/>
+  		    <attribute name="Main-Class" value="com.ekielzan.JDBCChecker.${ant.project.name}"/>
   		    <attribute name="Specification-Title" value="JDBC Checking Tool"/>
   		    <attribute name="Specification-Version" value="${project.version}"/>
   		    <attribute name="Specification-Vendor" value="${project.author.name},${project.author.soc}"/>
-  		    <attribute name="Implementation-Title" value="com.sopra.JDBCChecker"/>
+  		    <attribute name="Implementation-Title" value="com.ekielzan.JDBCChecker"/>
   		    <attribute name="Implementation-Version" value="build ${build.number}"/>
   		    <attribute name="Implementation-Vendor" value="${project.author.name},${project.author.soc}"/>
   		    <attribute name="Built-Date" value="${TODAY}"/>
